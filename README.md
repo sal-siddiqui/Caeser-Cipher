@@ -29,11 +29,23 @@ In addition, we implement a **brute force feature** that allows users to decrypt
 
 ## Usage
 
-...
+```python
+from typing import List
+from string import (
+    ascii_lowercase as ASCII_LOWERCASE,
+    ascii_uppercase as ASCII_UPPERCASE,
+)
+import re
+```
 
-## Progress
+## Timeline
 
-* [ ] TODO: Save the results of the encryption/decryption in an optional output file. The default behavior will overwrite the file being encrypted/decrypted.
-* [ ] TODO: Implement Command Line Arguments
-* [ ] TODO: Complete README.md File
-* [ ] TODO: Push to GitHub
+- [x] Task 1:
+
+  - [x] Implement internal functions.
+  - [x] Implement external functions.
+
+- [ ] Task 2:
+
+  - [ ] Modification: `encrypt` and `decrypt` must provide the option to either overwrite the file (default behavior) or save to another file.
+  - [ ] Implement Command Line Arguments
