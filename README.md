@@ -1,7 +1,7 @@
 # **Ceaser Cipher**
 
 <p align="center">
-  <img src="https://miro.medium.com/v2/resize:fit:800/0*Z04NmKT-jlcj_Pak" alt="CANNOT DISPLAY IMAGE"/>
+  <img src="./imgs/caesar-cipher-illustration.gif" alt="CANNOT DISPLAY IMAGE"/>
 </p>
 
 ## Overview
