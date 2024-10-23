@@ -40,11 +40,10 @@ import re
 
 ## Timeline
 
-- [x] Task 1:
+- [X] Task 1:
 
-  - [x] Implement internal functions.
-  - [x] Implement external functions.
-
+  - [X] Implement internal functions.
+  - [X] Implement external functions.
 - [ ] Task 2:
 
   - [ ] Modification: `encrypt` and `decrypt` must provide the option to either overwrite the file (default behavior) or save to another file.

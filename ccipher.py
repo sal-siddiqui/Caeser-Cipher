@@ -3,7 +3,6 @@ from string import (
     ascii_lowercase as ASCII_LOWERCASE,
     ascii_uppercase as ASCII_UPPERCASE,
 )
-import re
 
 
 def _read_file(file_name: str) -> List[str]:
@@ -80,7 +79,6 @@ def _decrypt(lines: List[str], key: int = -3) -> List[str]:
     return ["".join(_shift_char(char, key) for char in line) for line in lines]
 
 
-# TODO: Save results to an optional output file
 def encrypt(file_name: str, key: int = 3) -> None:
     """
     Encrypt a file using a Caesar cipher with a specified key.
@@ -89,17 +87,12 @@ def encrypt(file_name: str, key: int = 3) -> None:
         file_name (str): The name of the file to encrypt.
         key (int, optional): The shift value for the cipher. Defaults to 3.
     """
-    lines_plain = _read_file(file_name)
-    lines_encrypted = _encrypt(lines_plain, key)
+    lines = _read_file(file_name)
+    lines_encrypted = _encrypt(lines, key)
 
-    file_name_encrypted = (
-        re.findall(r"([A-Za-z]+)\.txt", file_name)[0] + "_encrypted.txt"
-    )
-
-    _write_file(file_name_encrypted, lines_encrypted)
+    _write_file(file_name, lines_encrypted)
 
 
-# TODO: Save results to an optional output file
 def decrypt(file_name: str, key: int = -3) -> None:
     """
     Decrypt a file using a Caesar cipher with a specified key.
@@ -108,15 +101,11 @@ def decrypt(file_name: str, key: int = -3) -> None:
         file_name (str): The name of the file to decrypt.
         key (int, optional): The shift value for the cipher. Defaults to -3.
     """
-    lines_encrypted = _read_file(file_name)
-    lines_decrypted = _decrypt(lines_encrypted, key)
+    lines = _read_file(file_name)
+    lines_decrypted = _decrypt(lines, key)
 
-    file_name_decrypted = (
-        re.findall(r"([A-Za-z]+)\.txt", file_name)[0] + "_decrypted.txt"
-    )
-
-    _write_file(file_name_decrypted, lines_decrypted)
+    _write_file(file_name, lines_decrypted)
 
 
 if __name__ == "__main__":
-    decrypt("test.txt")
+    encrypt("test.txt")
