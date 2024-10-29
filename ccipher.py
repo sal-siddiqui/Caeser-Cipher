@@ -1,9 +1,9 @@
-from typing import List
+from typing import List, Dict
 from string import (
     ascii_lowercase as ASCII_LOWERCASE,
     ascii_uppercase as ASCII_UPPERCASE,
 )
-import re
+import argparse
 
 
 def _read_file(file_name: str) -> List[str]:
@@ -66,7 +66,7 @@ def _encrypt(lines: List[str], key: int = 3) -> List[str]:
     return ["".join(_shift_char(char, key) for char in line) for line in lines]
 
 
-def _decrypt(lines: List[str], key: int = -3) -> List[str]:
+def _decrypt(lines: List[str], key: int = 3) -> List[str]:
     """
      Decrypts a list of strings using a Caesar cipher with a specified key.
 
@@ -77,46 +77,86 @@ def _decrypt(lines: List[str], key: int = -3) -> List[str]:
     Returns:
         List[str]: A list of decrypted strings.
     """
-    return ["".join(_shift_char(char, key) for char in line) for line in lines]
+    return ["".join(_shift_char(char, -key) for char in line) for line in lines]
 
 
-# TODO: Save results to an optional output file
-def encrypt(file_name: str, key: int = 3) -> None:
+def parse_arguments() -> Dict[str:str]:
+    global_parser = argparse.ArgumentParser(prog="ccipher")
+
+    subparsers = global_parser.add_subparsers(
+        title="subcommands", help="Ceaser Cipher Operations"
+    )
+
+    encrypt_parser = subparsers.add_parser("encrypt", help="Encrypt a file")
+    encrypt_parser.add_argument(
+        dest="file_name", type=str, help="The name of the file to encrypt."
+    )
+    encrypt_parser.add_argument(
+        dest="key", default=3, help="The shift value for the cipher. Defaults to 3."
+    )
+    encrypt_parser.add_argument(
+        dest="output_file",
+        type=str,
+        default=None,
+        help="The name of the file to write the output to. Defaults to `file_name`",
+    )
+    encrypt_parser.set_defaults(func=encrypt)
+
+    decrypt_parser = subparsers.add_parser("decrypt", help="Decrypt a file")
+    decrypt_parser.add_argument(
+        dest="file_name", type=str, help="The name of the file to encrypt."
+    )
+    decrypt_parser.add_argument(
+        dest="key", default=3, help="The shift value for the cipher. Defaults to 3."
+    )
+    decrypt_parser.add_argument(
+        dest="output_file",
+        type=str,
+        default=None,
+        help="The name of the file to write the output to. Defaults to `file_name`",
+    )
+    decrypt_parser.set_defaults(func=decrypt)
+
+    args = global_parser.parse_args()
+
+    print(args.__dict__)
+
+
+def encrypt(file_name: str, key: int = 3, output_file: str = None) -> None:
     """
-    Encrypt a file using a Caesar cipher with a specified key.
+    Encrypt a file using a Caesar cipher with a specified key and write to the specified file.
 
     Args:
         file_name (str): The name of the file to encrypt.
         key (int, optional): The shift value for the cipher. Defaults to 3.
+        output_file (str, optional): The name of the file to write the output to. Defaults to `file_name`
     """
-    lines_plain = _read_file(file_name)
-    lines_encrypted = _encrypt(lines_plain, key)
+    if output_file is None:
+        output_file = file_name
 
-    file_name_encrypted = (
-        re.findall(r"([A-Za-z]+)\.txt", file_name)[0] + "_encrypted.txt"
-    )
+    lines = _read_file(file_name)
+    lines_encrypted = _encrypt(lines, key)
 
-    _write_file(file_name_encrypted, lines_encrypted)
+    _write_file(output_file, lines_encrypted)
 
 
-# TODO: Save results to an optional output file
-def decrypt(file_name: str, key: int = -3) -> None:
+def decrypt(file_name: str, key: int = 3, output_file: str = None) -> None:
     """
-    Decrypt a file using a Caesar cipher with a specified key.
+    Decrypt a file using a Caesar cipher with a specified key and write to the specified file.
 
     Args:
         file_name (str): The name of the file to decrypt.
-        key (int, optional): The shift value for the cipher. Defaults to -3.
+        key (int, optional): The shift value for the cipher. Defaults to 3.
+        output_file (str, optional): The name of the file to write the output to. Defaults to `file_name`
     """
-    lines_encrypted = _read_file(file_name)
-    lines_decrypted = _decrypt(lines_encrypted, key)
+    if output_file is None:
+        output_file = file_name
 
-    file_name_decrypted = (
-        re.findall(r"([A-Za-z]+)\.txt", file_name)[0] + "_decrypted.txt"
-    )
+    lines = _read_file(file_name)
+    lines_decrypted = _decrypt(lines, key)
 
-    _write_file(file_name_decrypted, lines_decrypted)
+    _write_file(output_file, lines_decrypted)
 
 
 if __name__ == "__main__":
-    decrypt("test.txt")
+    pass
