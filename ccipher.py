@@ -1,9 +1,9 @@
-from typing import List, Dict
+from typing import Dict, List
 from string import (
     ascii_lowercase as ASCII_LOWERCASE,
     ascii_uppercase as ASCII_UPPERCASE,
 )
-import argparse
+from argparse import ArgumentParser
 
 
 def _read_file(file_name: str) -> List[str]:
@@ -80,48 +80,6 @@ def _decrypt(lines: List[str], key: int = 3) -> List[str]:
     return ["".join(_shift_char(char, -key) for char in line) for line in lines]
 
 
-def parse_arguments() -> Dict[str:str]:
-    global_parser = argparse.ArgumentParser(prog="ccipher")
-
-    subparsers = global_parser.add_subparsers(
-        title="subcommands", help="Ceaser Cipher Operations"
-    )
-
-    encrypt_parser = subparsers.add_parser("encrypt", help="Encrypt a file")
-    encrypt_parser.add_argument(
-        dest="file_name", type=str, help="The name of the file to encrypt."
-    )
-    encrypt_parser.add_argument(
-        dest="key", default=3, help="The shift value for the cipher. Defaults to 3."
-    )
-    encrypt_parser.add_argument(
-        dest="output_file",
-        type=str,
-        default=None,
-        help="The name of the file to write the output to. Defaults to `file_name`",
-    )
-    encrypt_parser.set_defaults(func=encrypt)
-
-    decrypt_parser = subparsers.add_parser("decrypt", help="Decrypt a file")
-    decrypt_parser.add_argument(
-        dest="file_name", type=str, help="The name of the file to encrypt."
-    )
-    decrypt_parser.add_argument(
-        dest="key", default=3, help="The shift value for the cipher. Defaults to 3."
-    )
-    decrypt_parser.add_argument(
-        dest="output_file",
-        type=str,
-        default=None,
-        help="The name of the file to write the output to. Defaults to `file_name`",
-    )
-    decrypt_parser.set_defaults(func=decrypt)
-
-    args = global_parser.parse_args()
-
-    print(args.__dict__)
-
-
 def encrypt(file_name: str, key: int = 3, output_file: str = None) -> None:
     """
     Encrypt a file using a Caesar cipher with a specified key and write to the specified file.
@@ -158,5 +116,49 @@ def decrypt(file_name: str, key: int = 3, output_file: str = None) -> None:
     _write_file(output_file, lines_decrypted)
 
 
-if __name__ == "__main__":
+def brute_force(file_name: str, output_file: str = None) -> None:
     pass
+
+
+def parse_arguments() -> Dict:
+    parser = ArgumentParser()
+
+    parser.description = "Encrypt or decrypt a file using a specified key."
+    parser.usage = "ccipher.py [-h] {-e | -d} file key [-o OUTPUT]"
+    parser.epilog = "Note: You must choose either the -e (encrypt) or -d (decrypt) option, but not both."
+
+    parser.add_argument(
+        "file",
+        help="Name of the file to encrypt or decrypt",
+        type=str,
+    )
+    parser.add_argument(
+        "key", help="The key used for encryption or decryption", type=int
+    )
+
+    parser.add_argument(
+        "-e", "--encrypt", help="encrypts the specified file", action="store_true"
+    )
+    parser.add_argument(
+        "-d", "--decrypt", help="decrypts the specified file", action="store_true"
+    )
+    parser.add_argument(
+        "-o", "--output", help="saves the result in another file", type=str
+    )
+
+    args = parser.parse_args()
+
+    if not (args.encrypt ^ args.decrypt):
+        parser.error(
+            "The options -e/--encrypt and -d/--decrypt are mutually exclusive. Please choose one."
+        )
+
+    return args.__dict__
+
+
+if __name__ == "__main__":
+    args = parse_arguments()
+    if args["encrypt"] is True:
+        encrypt(args["file"], args["key"], args["output"])
+    else:
+        decrypt(args["file"], args["key"], args["output"])

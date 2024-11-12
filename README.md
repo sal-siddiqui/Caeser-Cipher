@@ -23,9 +23,9 @@ This method is believed to have been used by Julius Caesar for his private corre
 
 **Purpose of Program**
 
-* Encrypt files using a specified key.
-* Decrypt files using a specified key.
-* Decrypt files using brute force.
+- Encrypt files using a specified key.
+- Decrypt files using a specified key.
+- Decrypt files using brute force.
 
 ## Usage
 
@@ -33,16 +33,20 @@ This method is believed to have been used by Julius Caesar for his private corre
 
 ## Timeline
 
-- [X] Task 1:
+Task 1
 
-  - [X] Implement internal functions.
-  - [X] Implement external functions.
-- [ ] Task 2:
+- [x] Implement internal functions.
+- [x] Implement external functions.
 
-  - [ ] Implement Command Line Arguments
-    - [ ] Resource 1 ([Link](https://www.youtube.com/watch?v=aGy7U5ItLRk))
-    - [ ] Resource 2 ([Link](https://www.cherryservers.com/blog/how-to-use-python-argparse#sub-parsers-in-argparse))
-    - [ ] Resource 3 ([Link](https://realpython.com/command-line-interfaces-python-argparse/#defining-mutually-exclusive-argument-and-option-groups))
-  - [ ] Implement Brute Force Algorithm
-    - [ ] w/ Web Scraping (Find the file with the highest number of matches to a list of most common english words)
-    - [ ] w/ Machine Learning Model (Feed decrypted file to a model to determine whether the text is human readable or not)
+Task 2
+
+- [x] Implement Command Line Arguments
+
+Task 3
+
+- [ ] Implement Brute Force Algorithms
+
+- [Resource 1](https://youtube.com/playlist?list=PLUaB-1hjhk8G-xVXA5FxT2cLNzd87GInr&si=VwRQWP4PRmcCzbEA)
+- [Resource 2](https://realpython.com/python-web-scraping-practical-introduction/)
+- [Resource 3](https://youtu.be/DOgjN7RmHds?si=kudZwXhlwgH_R586)
+- [Resource 4](https://realpython.com/python-pathlib/)
