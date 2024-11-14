@@ -40,11 +40,11 @@ Task 1
 
 Task 2
 
-- [x] Implement Command Line Arguments
+- [x] Implement Command Line Arguments.
 
 Task 3
 
-- [ ] Implement Brute Force Algorithms
+- [ ] Implement Brute Force Algorithm.
 
 - [Resource 1](https://youtube.com/playlist?list=PLUaB-1hjhk8G-xVXA5FxT2cLNzd87GInr&si=VwRQWP4PRmcCzbEA)
 - [Resource 2](https://realpython.com/python-web-scraping-practical-introduction/)
