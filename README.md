@@ -4,7 +4,7 @@
   <img src="./imgs/caesar-cipher-illustration.gif" alt="CANNOT DISPLAY IMAGE"/>
 </p>
 
-## Overview
+## **Overview**
 
 **What is the Caesar Cipher?**
 
@@ -27,26 +27,20 @@ This method is believed to have been used by Julius Caesar for his private corre
 - Decrypt files using a specified key.
 - Decrypt files using brute force.
 
-## Usage
+## **Usage**
 
 ...
 
-## Timeline
+## **Timeline**
 
-Task 1
+**Task 1**
 
-- [x] Implement internal functions.
-- [x] Implement external functions.
+- [x] Implement Core Functionality (Encryption & Decryption).
 
-Task 2
+**Task 2**
 
 - [x] Implement Command Line Arguments.
 
-Task 3
+**Task 3**
 
 - [ ] Implement Brute Force Algorithm.
-
-- [Resource 1](https://youtube.com/playlist?list=PLUaB-1hjhk8G-xVXA5FxT2cLNzd87GInr&si=VwRQWP4PRmcCzbEA)
-- [Resource 2](https://realpython.com/python-web-scraping-practical-introduction/)
-- [Resource 3](https://youtu.be/DOgjN7RmHds?si=kudZwXhlwgH_R586)
-- [Resource 4](https://realpython.com/python-pathlib/)
