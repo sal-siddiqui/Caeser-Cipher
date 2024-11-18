@@ -44,4 +44,5 @@ This method is believed to have been used by Julius Caesar for his private corre
 **Task 3**
 
 - [ ] Implement Brute Force Algorithm.
+  - Learn the [Pathlib Module](https://realpython.com/python-pathlib/)
   - Train a Machine Learning Model to differentiate between Legible text and non-legible text.
