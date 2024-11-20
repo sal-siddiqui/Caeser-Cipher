@@ -44,5 +44,5 @@ This method is believed to have been used by Julius Caesar for his private corre
 **Task 3**
 
 - [ ] Implement Brute Force Algorithm.
-  - Learn the [`subprocess` module](https://www.youtube.com/watch?v=2Fp1N6dof0Y)
+  - Learn about [`subprocess`](https://www.youtube.com/watch?v=2Fp1N6dof0Y) module.
   - Train a Machine Learning Model to differentiate between Legible text and non-legible text.
